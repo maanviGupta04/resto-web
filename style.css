@@ -144,6 +144,9 @@ h1{
         flex-direction: column;
         gap: 1rem;
         padding: 10px;
+        font-family: cursive;
+        font-weight: bold;
+        
     }
 }
 
@@ -472,3 +475,4 @@ h1{
         padding: 40px 10px;  
     }
 }
+
