@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Recipe - ServeSmart</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="recipe-container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-logo">ServeSmart</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+      </ul>
+      <button class="nav-btn">Order Now</button>
+    </nav>
+
+    <!-- Recipe Form -->
+    <div class="recipe-form-container">
+      <h2>🍳 Share Your Recipe</h2>
+      <form id="recipeForm" enctype="multipart/form-data">
+        
+        <input type="text" name="yourname" placeholder="Your Name" required />
+
+        <input type="text" name="name" placeholder="Recipe Name" required />
+
+        <input type="text" name="ingredients" placeholder="Ingredients" required />
+
+        <textarea name="steps" placeholder="Steps"></textarea>
+
+        <select name="category">
+          <option value="veg">Veg</option>
+          <option value="nonveg">Non Veg</option>
+          <option value="dessert">Dessert</option>
+          <option value="drinks">Drink</option>
+          <option value="snacks">Snack</option>
+
+        </select>
+
+        <input type="file" name="image" accept="image/*" />
+
+        <button type="submit">Add Recipe</button>
+      </form>
+    </div>
+
+    <!-- Recipes List -->
+    <div class="recipes-list-section">
+      <h2>📋 Community Recipes</h2>
+      <div id="recipes-list">
+        <div class="loading">Loading recipes...</div>
+      </div>
+    </div>
+
+    <script>
+      const recipeForm = document.getElementById("recipeForm");
+
+      recipeForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(recipeForm);
+
+        try {
+          const res = await fetch("http://localhost:3000/add-recipe", {
+            method: "POST",
+            body: formData,
+          });
+
+          const data = await res.json();
+
+          alert(data.message);
+
+          recipeForm.reset();
+
+          loadRecipes();
+        } catch (err) {
+          console.error(err);
+          alert("Error submitting recipe");
+        }
+      });
+
+      // Load recipes from backend
+      async function loadRecipes() {
+        try {
+          const res = await fetch("http://localhost:3000/recipes");
+          const recipes = await res.json();
+          const list = document.getElementById("recipes-list");
+
+          list.innerHTML = recipes
+            .map(
+              (recipe) => `
+
+               
+  <div class="recipe-card">
+    
+   ${recipe.image ? `<img src="http://localhost:3000${recipe.image}" alt="${recipe.name}" style="width:auto; height:200px; object-fit:cover; border-radius:8px;">` : '<div style="width:auto; height:200px; background:#f0f0f0; display:flex; align-items:center; justify-content:center; border-radius:8px;">No Image</div>'}
+    <h3>${recipe.name}</h3>
+    <p><strong>Category:</strong> ${recipe.category}</p>
+    
+    <!-- 🔥 STATUS & BUTTON -->
+    ${
+      recipe.menu
+        ? `<p style="color:green">✅ In Menu (₹${recipe.price})</p>`
+        : `<button onclick="addToMenu('${recipe._id}')" style="background:green;color:white;padding:8px;border:none;border-radius:5px;">Add to Menu</button>`
+    }
+    
+    <p><strong>Avg Rating:</strong> ${recipe.averageRating?.toFixed(1) || 0} ⭐</p>
+    <div>
+      <input type="number" min="1" max="5" placeholder="Rate 1-5" id="rate-${recipe._id}">
+      <button onclick="submitRating('${recipe._id}')">Rate</button>
+    </div>
+  </div>
+`,
+            )
+            .join("");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      // Submit rating
+      async function submitRating(recipeId) {
+        const ratingInput = document.getElementById(`rate-${recipeId}`);
+        const rating = parseInt(ratingInput.value);
+
+        if (!rating || rating < 1 || rating > 5) {
+          alert("Please enter a rating between 1 and 5");
+          return;
+        }
+
+        try {
+          const res = await fetch(
+            `http://localhost:3000/recipes/${recipeId}/rate`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ rating }),
+            },
+          );
+          const data = await res.json();
+          alert(data.message);
+
+          // Reload recipes to update averageRating
+          loadRecipes();
+        } catch (err) {
+          console.error(err);
+          alert("Error submitting rating");
+        }
+      }
+
+      // Load recipes on page load
+      loadRecipes();
+    </script>
+  </body>
+</html>
