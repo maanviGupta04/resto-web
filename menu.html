@@ -2,31 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Our Menu - Sunita's Kitchen</title>
+  <title>Our Menu - ServeSmart</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <nav class="navbar-menu">
-    <div class="nav-logo">Sunita’s Kitchen</div>
+    <div class="nav-logo">ServeSmart</div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="menu.html">Menu</a></li>
+
+      <button onclick="downloadReceiptPDF()">Download Invoice</button>
+
     </ul>
   </nav>
+
+
+  <button class="nav-btn" id="view-cart-btn">
+  View Cart (<span id="cart-count">0</span>)
+</button>
 
   <section class="menu-page">
     <h1>Welcome,feel home</h1>
 
     <div class="menu-filters">
       <button class="filter-btn" data-category="all">All</button>
-      <button class="filter-btn" data-category="veg">Veg</button>
-      <button class="filter-btn" data-category="nonveg">Non-Veg</button>
+<button class="filter-btn" data-category="veg">Veg</button>
+<button class="filter-btn" data-category="nonveg">Non-Veg</button>
+<button class="filter-btn" data-category="drinks">Drinks</button>
+<button class="filter-btn" data-category="snacks">Snacks</button>
+<button class="filter-btn" data-category="dessert">Dessert</button>
     </div>
 
-    <div class="menu-container"></div>
+    <div class="menu-container">
+    </div>
   </section>
 
+  <div class="cart-drawer" id="cart-drawer">
+  
+  <div class="cart-header">
+    <h2>Your Cart</h2>
+    <button id="close-cart">✖</button>
+  </div>
+
+  <div id="cart-items"></div>
+
+  <div class="cart-footer">
+  <h3>Total: ₹<span id="cart-total">0</span></h3>
+  <button id="place-order-btn">Place Order</button>
+  <button onclick="generateReceipt()">Generate Receipt</button>
+
+ 
+  <div id="receipt-box"></div>
+</div>
+
+</div>
+<div class="chat-fab" id="chat-fab">🤖</div>
+
+<div class="chatbot-box hidden" id="chatbot-box">
+  <div class="chat-header">
+    <h3>🤖 AI Waiter</h3>
+    <button id="close-chat">✖</button>
+  </div>
+
+  <div id="chat-messages" class="chat-messages">
+    <div class="bot-msg">Hi 👋 Ask me what you'd like to eat!</div>
+  </div>
+
+  <div class="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Ask for food suggestions...">
+    <button id="chat-btn">Send</button>
+  </div>
+</div>
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
