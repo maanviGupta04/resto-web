@@ -1,44 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sunita's Kitchen</title>
+    <title>ServeSmart</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav class="navbar">
-      <div class="nav-logo">Sunita’s Kitchen</div>
+      <div class="nav-logo">ServeSmart</div>
 
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="menu.html">Menu</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="donation.html">Donate Don't Waste</a></li>
+        <li><a href="recipe.html">Add your Recipes</a></li>
       </ul>
 
-      <button class="nav-btn">Order Now</button>
+      <a href="menu.html"><button class="nav-btn">Order Now</button></a>
     </nav>
 
     <div class="main" id="home">
       <button id="login">Login</button>
+      <!-- LOGIN MODAL -->
+      <div id="login-modal" class="login-modal hidden">
+        <div class="login-box">
+          <h2>🍽️ Welcome Back</h2>
+          <p>Login to continue your food journey</p>
+
+          <input type="text" id="username" placeholder="Enter username" />
+          <input type="password" id="password" placeholder="Enter password" />
+           
+            <button id="close-login">✖</button>
+
+          <button onclick="loginUser()">Login</button>
+        
+        </div>
+      </div>
     </div>
 
     <div class="separation"></div>
 
-    <div class="next"  id="about">
+    <div class="next" id="about">
       <div class="head">
-        <h1>"Ghar Jaisa Swaad"</h1>
+        <h1>"Smart Food. Smart Choices."</h1>
         <p>
-          Welcome to Sunita’s Kitchen, where every meal is made with love and care. Our food is homemade, using fresh, wholesome ingredients, just like Mom would make at home. From comforting classics to family-favorite recipes, each dish is crafted to bring warmth, flavor, and a touch of home to your table.
-
-          Beyond serving delicious meals, we also believe in giving back to the community. Through our donation feature, you can contribute to providing meals for those in need, helping us spread kindness and nourishment beyond our kitchen. If you have food in bulk, instead of throwing it- Donate it.Taste the difference of food made with heart and tradition — and be a part of sharing that love with others.
+          ServeSmart is more than just a food platform — it’s a warm,
+          community-driven space where homemade flavors, heartfelt recipes, and
+          smart decision-making come together. We invite food lovers to explore
+          comforting dishes crafted with love, while also giving them the
+          opportunity to share their own special recipes through our easy-to-use
+          submission page. Every dish on ServeSmart is shaped by the community
+          through our interactive rating system, where users can review and
+          celebrate their favorite meals. The highest-rated and most-loved
+          recipes earn a place on our featured menu, ensuring that quality and
+          taste are chosen by real people. With dedicated forms for recipe
+          submissions, ratings, and donations, ServeSmart creates a seamless and
+          meaningful experience where everyone can contribute, support, and grow
+          together. Here, food is not just served — it is shared, valued, and
+          elevated by the community"
         </p>
       </div>
-    
     </div>
 
+    <div class="separation"></div>
+
+    <div class="info">
+      <div class="offer">
+        "ServeSmart isn’t just about tasting food, it’s about shaping it".
+      </div>
+      <div class="cards">
+        <div class="card card1">
+          "✨ Share Your Recipe Have a special dish that everyone loves? Submit
+          it through our Recipe Page and let the community experience your
+          creation. Your kitchen could inspire hundreds of others."
+        </div>
+        <div class="card card2">
+          "⭐ Rate & Celebrate the Best Every user has a voice. Through our
+          interactive rating system, you can review and rate dishes you try. The
+          highest-rated, most-loved recipes earn a special place on our featured
+          menu — because at ServeSmart, the community decides what shines."
+        </div>
+        <div class="card card3">
+          "🤝 Give Back Through Donations We believe food connects people. With
+          our simple donation form, you can support our mission, help us grow,
+          and contribute to building a stronger, food-loving community."
+        </div>
+        <div class="card card4">
+          "🤖 AI-Powered Food Experience with our integrated AI chatbot,
+          ServeSmart transforms the way you order food. Get instant
+          recommendations, discover dishes based on your taste, and enjoy a
+          personalized dining experience — all in real time."
+        </div>
+      </div>
+    </div>
     <div class="separation"></div>
 
     <div class="option" id="option">
@@ -46,50 +103,48 @@
         <img src="assets/thali1.jpg" alt="" />
       </div>
       <p>
-        "We offer a delicious range of both vegetarian and non-vegetarian
-        homemade dishes. Each meal is freshly prepared using carefully selected
-        ingredients, maintaining taste, quality, and hygiene, so everyone can
-        enjoy the comfort of home-style food."
+        "We offer a variety of vegetarian and non-vegetarian dishes curated
+        based on community ratings. The highest-rated recipes are featured in
+        our smart menu, ensuring quality, taste, and satisfaction in every
+        bite."
       </p>
       <div class="box box2">
         <img src="assets/image (1).png" alt="" />
       </div>
     </div>
 
- <div class="separation"></div>
+    <div class="separation"></div>
 
     <footer class="footer" id="contact">
-    <div class="footer-section">
-        <h2>Sunita’s Kitchen</h2>
-        <p>Ghar Jaisa Swaad</p>
-       <p>Homemade &bull; Fresh &bull; Hygienic</p>
-    </div>
+      <div class="footer-section">
+        <h2>ServeSmart</h2>
+        <ul class="footer-tagline">
+          <li>Community Powered</li>
+          <li>Smart Rated</li>
+          <li>Zero Waste</li>
+          <li>Donation facility is open for 24/7</li>
+        </ul>
+      </div>
 
-    <div class="footer-section">
+      <div class="footer-section">
         <h3>Contact</h3>
         <p>📞 +91 9XXXXXXXXX</p>
         <p>📍 Mumbai, India</p>
         <p>⏰ 11 AM – 10 PM</p>
-    </div>
+      </div>
 
-    <div class="footer-section">
+      <div class="footer-section">
         <h3>Quick Links</h3>
-        <a href="#">Home</a>
-        <a href="#">Menu</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </div>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
 
-     <a class="whatsapp" href="#">
-    💬 Order on WhatsApp
-</a>
-</footer>
+      <a class="whatsapp" href="#"> 💬 Order on WhatsApp </a>
+    </footer>
 
-<div class="footer-bottom">
-    © 2026 Sunita’s Kitchen. All rights reserved.
-</div>
- 
-        
+    <div class="footer-bottom">© 2026 ServeSmart. All rights reserved.</div>
 
     <script src="script.js"></script>
   </body>
